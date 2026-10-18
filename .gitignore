@@ -1,0 +1,10 @@
+# Personal catch log — never publish
+data/catches.jsonl
+
+# Secrets
+*.key
+.env
+.env.*
+
+# OS / editor
+.DS_Store

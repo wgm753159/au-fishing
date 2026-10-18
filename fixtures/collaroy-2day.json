@@ -1,0 +1,157 @@
+{
+  "_comment": "Synthetic WillyWeather-shaped fixture for offline testing of the scoring path. Values are plausible for a Sydney spring day, not real observations.",
+  "location": {
+    "id": 2212,
+    "name": "Collaroy Beach",
+    "region": "Sydney",
+    "state": "NSW",
+    "postcode": "2097",
+    "timeZone": "Australia/Sydney",
+    "lat": -33.73212,
+    "lng": 151.30123,
+    "typeId": 2
+  },
+  "forecasts": {
+    "tides": {
+      "units": { "height": "m" },
+      "days": [
+        {
+          "dateTime": "2026-10-19 00:00:00",
+          "entries": [
+            { "dateTime": "2026-10-19 02:10:00", "height": 1.72, "type": "high" },
+            { "dateTime": "2026-10-19 08:20:00", "height": 0.42, "type": "low" },
+            { "dateTime": "2026-10-19 14:35:00", "height": 1.65, "type": "high" },
+            { "dateTime": "2026-10-19 20:50:00", "height": 0.38, "type": "low" }
+          ]
+        },
+        {
+          "dateTime": "2026-10-20 00:00:00",
+          "entries": [
+            { "dateTime": "2026-10-20 03:00:00", "height": 1.75, "type": "high" },
+            { "dateTime": "2026-10-20 09:10:00", "height": 0.40, "type": "low" },
+            { "dateTime": "2026-10-20 15:25:00", "height": 1.70, "type": "high" },
+            { "dateTime": "2026-10-20 21:40:00", "height": 0.35, "type": "low" }
+          ]
+        }
+      ]
+    },
+    "wind": {
+      "units": { "speed": "kmh" },
+      "days": [
+        {
+          "dateTime": "2026-10-19 00:00:00",
+          "entries": [
+            { "dateTime": "2026-10-19 00:00:00", "speed": 10, "direction": 45, "directionText": "NE" },
+            { "dateTime": "2026-10-19 03:00:00", "speed": 11, "direction": 45, "directionText": "NE" },
+            { "dateTime": "2026-10-19 06:00:00", "speed": 12, "direction": 40, "directionText": "NE" },
+            { "dateTime": "2026-10-19 09:00:00", "speed": 14, "direction": 40, "directionText": "NE" },
+            { "dateTime": "2026-10-19 12:00:00", "speed": 16, "direction": 35, "directionText": "NE" },
+            { "dateTime": "2026-10-19 15:00:00", "speed": 18, "direction": 35, "directionText": "NE" },
+            { "dateTime": "2026-10-19 18:00:00", "speed": 16, "direction": 30, "directionText": "NNE" },
+            { "dateTime": "2026-10-19 21:00:00", "speed": 13, "direction": 30, "directionText": "NNE" }
+          ]
+        },
+        {
+          "dateTime": "2026-10-20 00:00:00",
+          "entries": [
+            { "dateTime": "2026-10-20 00:00:00", "speed": 12, "direction": 30, "directionText": "NNE" },
+            { "dateTime": "2026-10-20 03:00:00", "speed": 12, "direction": 30, "directionText": "NNE" },
+            { "dateTime": "2026-10-20 06:00:00", "speed": 14, "direction": 25, "directionText": "NNE" },
+            { "dateTime": "2026-10-20 09:00:00", "speed": 17, "direction": 25, "directionText": "NNE" },
+            { "dateTime": "2026-10-20 12:00:00", "speed": 20, "direction": 20, "directionText": "NNE" },
+            { "dateTime": "2026-10-20 15:00:00", "speed": 22, "direction": 20, "directionText": "NNE" },
+            { "dateTime": "2026-10-20 18:00:00", "speed": 19, "direction": 15, "directionText": "NNE" },
+            { "dateTime": "2026-10-20 21:00:00", "speed": 15, "direction": 15, "directionText": "NNE" }
+          ]
+        }
+      ]
+    },
+    "swell": {
+      "units": { "height": "m" },
+      "days": [
+        {
+          "dateTime": "2026-10-19 00:00:00",
+          "entries": [
+            { "dateTime": "2026-10-19 02:00:00", "height": 1.1, "period": 8.5, "direction": 90, "directionText": "E" },
+            { "dateTime": "2026-10-19 05:00:00", "height": 1.2, "period": 9.0, "direction": 92, "directionText": "E" },
+            { "dateTime": "2026-10-19 08:00:00", "height": 1.3, "period": 9.2, "direction": 95, "directionText": "E" },
+            { "dateTime": "2026-10-19 11:00:00", "height": 1.3, "period": 9.0, "direction": 96, "directionText": "E" },
+            { "dateTime": "2026-10-19 14:00:00", "height": 1.2, "period": 8.8, "direction": 98, "directionText": "E" },
+            { "dateTime": "2026-10-19 17:00:00", "height": 1.1, "period": 8.6, "direction": 100, "directionText": "E" },
+            { "dateTime": "2026-10-19 20:00:00", "height": 1.0, "period": 8.4, "direction": 100, "directionText": "E" },
+            { "dateTime": "2026-10-19 23:00:00", "height": 1.0, "period": 8.2, "direction": 102, "directionText": "ESE" }
+          ]
+        },
+        {
+          "dateTime": "2026-10-20 00:00:00",
+          "entries": [
+            { "dateTime": "2026-10-20 02:00:00", "height": 1.0, "period": 8.2, "direction": 102, "directionText": "ESE" },
+            { "dateTime": "2026-10-20 05:00:00", "height": 1.1, "period": 8.4, "direction": 104, "directionText": "ESE" },
+            { "dateTime": "2026-10-20 08:00:00", "height": 1.2, "period": 8.6, "direction": 105, "directionText": "ESE" },
+            { "dateTime": "2026-10-20 11:00:00", "height": 1.4, "period": 9.0, "direction": 108, "directionText": "ESE" },
+            { "dateTime": "2026-10-20 14:00:00", "height": 1.5, "period": 9.4, "direction": 110, "directionText": "ESE" },
+            { "dateTime": "2026-10-20 17:00:00", "height": 1.4, "period": 9.2, "direction": 110, "directionText": "ESE" },
+            { "dateTime": "2026-10-20 20:00:00", "height": 1.2, "period": 8.8, "direction": 112, "directionText": "ESE" },
+            { "dateTime": "2026-10-20 23:00:00", "height": 1.1, "period": 8.6, "direction": 112, "directionText": "ESE" }
+          ]
+        }
+      ]
+    },
+    "sunrisesunset": {
+      "days": [
+        {
+          "dateTime": "2026-10-19 00:00:00",
+          "entries": [
+            {
+              "firstLightDateTime": "2026-10-19 05:42:00",
+              "riseDateTime": "2026-10-19 06:05:00",
+              "setDateTime": "2026-10-19 19:15:00",
+              "lastLightDateTime": "2026-10-19 19:39:00"
+            }
+          ]
+        },
+        {
+          "dateTime": "2026-10-20 00:00:00",
+          "entries": [
+            {
+              "firstLightDateTime": "2026-10-20 05:41:00",
+              "riseDateTime": "2026-10-20 06:04:00",
+              "setDateTime": "2026-10-20 19:16:00",
+              "lastLightDateTime": "2026-10-20 19:40:00"
+            }
+          ]
+        }
+      ]
+    },
+    "moonphases": {
+      "days": [
+        {
+          "dateTime": "2026-10-19 00:00:00",
+          "entries": [
+            {
+              "riseDateTime": "2026-10-19 18:40:00",
+              "setDateTime": "2026-10-19 05:50:00",
+              "phase": "Full Moon",
+              "phaseCode": "full",
+              "percentageFull": 98,
+              "hemisphere": "s"
+            }
+          ]
+        },
+        {
+          "dateTime": "2026-10-20 00:00:00",
+          "entries": [
+            {
+              "riseDateTime": "2026-10-20 19:45:00",
+              "setDateTime": "2026-10-20 06:35:00",
+              "phase": "Waning Gibbous",
+              "phaseCode": "wang",
+              "percentageFull": 94,
+              "hemisphere": "s"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,681 @@
+{
+  "jurisdiction": "NSW",
+  "scope": "saltwater",
+  "asOf": "2026-10-18",
+  "source": "https://www.dpird.nsw.gov.au/fishing/recreational/fishing-rules-and-regs/saltwater-bag-and-size-limits",
+  "sourceNote": "从 NSW DPIRD 海水袋限/尺寸页转录。规则会变，卡在边界的鱼务必回原页复核。",
+  "defaultBagLimit": 20,
+  "defaultBagNote": "未列出的任何海水鱼或无脊椎动物，每日袋限为 20。",
+  "possessionRule": "以下类别的持有上限 = 日袋限的 2 倍：Australian Bass & Estuary Perch、Bream & Tarwhine、Flathead、Tailor、Luderick、Trevallies、Blue Swimmer Crab。其余鱼种持有上限 = 袋限。",
+  "shrinkageNote": "鱼获会缩水，刚好卡在下限的鱼测量时要留余量。",
+  "species": [
+    {
+      "name": "Australian Bass",
+      "group": "Australian Bass & Estuary Perch",
+      "aliases": [
+        "bass",
+        "estuary perch"
+      ],
+      "minCm": null,
+      "maxRule": "only 1 over 35cm",
+      "bagLimit": 2,
+      "possessionLimit": 4,
+      "closedSeason": "May–Aug inclusive, in rivers and estuaries",
+      "grouped": true
+    },
+    {
+      "name": "Estuary Perch",
+      "group": "Australian Bass & Estuary Perch",
+      "aliases": [
+        "estuary perch",
+        "perch"
+      ],
+      "minCm": null,
+      "maxRule": "only 1 over 35cm",
+      "bagLimit": 2,
+      "possessionLimit": 4,
+      "closedSeason": "May–Aug inclusive, in rivers and estuaries",
+      "grouped": true
+    },
+    {
+      "name": "Australian Salmon",
+      "aliases": [
+        "salmon",
+        "aussie salmon",
+        "bay trout"
+      ],
+      "minCm": null,
+      "bagLimit": 5
+    },
+    {
+      "name": "Bonito",
+      "aliases": [
+        "bonito"
+      ],
+      "minCm": null,
+      "bagLimit": 10
+    },
+    {
+      "name": "Bream (Black/Southern)",
+      "group": "Bream & Tarwhine",
+      "aliases": [
+        "bream",
+        "black bream",
+        "southern bream"
+      ],
+      "minCm": 25,
+      "bagLimit": 10,
+      "possessionLimit": 20,
+      "grouped": true
+    },
+    {
+      "name": "Bream (Yellowfin)",
+      "group": "Bream & Tarwhine",
+      "aliases": [
+        "yellowfin bream"
+      ],
+      "minCm": 25,
+      "bagLimit": 10,
+      "possessionLimit": 20,
+      "grouped": true
+    },
+    {
+      "name": "Tarwhine",
+      "group": "Bream & Tarwhine",
+      "aliases": [
+        "tarwhine"
+      ],
+      "minCm": 20,
+      "bagLimit": 10,
+      "possessionLimit": 20,
+      "grouped": true
+    },
+    {
+      "name": "Cobia",
+      "aliases": [
+        "cobia"
+      ],
+      "minCm": null,
+      "bagLimit": 5
+    },
+    {
+      "name": "Eastern Blue Groper",
+      "aliases": [
+        "blue groper",
+        "groper",
+        "brown groper",
+        "red groper"
+      ],
+      "minCm": null,
+      "bagLimit": 0,
+      "protected": true,
+      "notes": "只能放流，不可留。"
+    },
+    {
+      "name": "Mahi Mahi (Dolphinfish)",
+      "aliases": [
+        "mahi mahi",
+        "dolphinfish",
+        "dorado"
+      ],
+      "minCm": 60,
+      "maxRule": "only 1 over 110cm",
+      "bagLimit": 10
+    },
+    {
+      "name": "Eel (Southern Shortfin)",
+      "group": "Eels",
+      "aliases": [
+        "eel",
+        "shortfin eel"
+      ],
+      "minCm": 30,
+      "bagLimit": 10,
+      "grouped": true
+    },
+    {
+      "name": "Eel (Longfin)",
+      "group": "Eels",
+      "aliases": [
+        "longfin eel"
+      ],
+      "minCm": 58,
+      "bagLimit": 10,
+      "grouped": true
+    },
+    {
+      "name": "Flathead (Dusky)",
+      "group": "Flathead",
+      "aliases": [
+        "flathead",
+        "dusky flathead",
+        "lizard"
+      ],
+      "minCm": 36,
+      "maxCm": 70,
+      "bagLimit": 5,
+      "possessionLimit": 10,
+      "grouped": true
+    },
+    {
+      "name": "Flathead (Bluespotted)",
+      "group": "Flathead",
+      "aliases": [
+        "bluespotted flathead",
+        "sand flathead"
+      ],
+      "minCm": 33,
+      "bagLimit": 10,
+      "possessionLimit": 20,
+      "grouped": true
+    },
+    {
+      "name": "Flathead (Tiger)",
+      "group": "Flathead",
+      "aliases": [
+        "tiger flathead"
+      ],
+      "minCm": 33,
+      "bagLimit": 10,
+      "possessionLimit": 20,
+      "grouped": true
+    },
+    {
+      "name": "Flounder",
+      "group": "Flounder & Sole",
+      "aliases": [
+        "flounder"
+      ],
+      "minCm": 25,
+      "bagLimit": 20,
+      "grouped": true
+    },
+    {
+      "name": "Sole",
+      "group": "Flounder & Sole",
+      "aliases": [
+        "sole"
+      ],
+      "minCm": null,
+      "bagLimit": null,
+      "grouped": true,
+      "notes": "原表在 Flounder & Sole 一行标注「0 for Sole」，含义不明确（0 尺寸限制还是 0 袋限），用前核对原页。"
+    },
+    {
+      "name": "Garfish (Eastern Sea)",
+      "aliases": [
+        "garfish",
+        "gar"
+      ],
+      "minCm": null,
+      "bagLimit": 20
+    },
+    {
+      "name": "Hairtail",
+      "aliases": [
+        "hairtail"
+      ],
+      "minCm": null,
+      "bagLimit": 10
+    },
+    {
+      "name": "Leatherjacket",
+      "aliases": [
+        "leatherjacket",
+        "leathery",
+        "jacket"
+      ],
+      "minCm": null,
+      "bagLimit": 20,
+      "grouped": true
+    },
+    {
+      "name": "Luderick",
+      "aliases": [
+        "luderick",
+        "blackfish"
+      ],
+      "minCm": 27,
+      "bagLimit": 10,
+      "possessionLimit": 20
+    },
+    {
+      "name": "Mackerel (Spanish)",
+      "group": "Mackerel",
+      "aliases": [
+        "spanish mackerel",
+        "mackerel"
+      ],
+      "minCm": 75,
+      "bagLimit": 5,
+      "grouped": true
+    },
+    {
+      "name": "Mackerel (Spotted)",
+      "group": "Mackerel",
+      "aliases": [
+        "spotted mackerel"
+      ],
+      "minCm": 60,
+      "bagLimit": 5,
+      "grouped": true
+    },
+    {
+      "name": "Mangrove Jack",
+      "aliases": [
+        "mangrove jack",
+        "jack"
+      ],
+      "minCm": null,
+      "bagLimit": 5
+    },
+    {
+      "name": "Morwong (Grey/Rubberlip)",
+      "group": "Morwong",
+      "aliases": [
+        "morwong",
+        "rubberlip",
+        "grey morwong"
+      ],
+      "minCm": 30,
+      "bagLimit": 10,
+      "grouped": true
+    },
+    {
+      "name": "Morwong (Jackass)",
+      "group": "Morwong",
+      "aliases": [
+        "jackass morwong"
+      ],
+      "minCm": 30,
+      "bagLimit": 10,
+      "grouped": true
+    },
+    {
+      "name": "Morwong (Red)",
+      "group": "Morwong",
+      "aliases": [
+        "red morwong"
+      ],
+      "minCm": 30,
+      "bagLimit": 5,
+      "grouped": true
+    },
+    {
+      "name": "Morwong (Banded)",
+      "group": "Morwong",
+      "aliases": [
+        "banded morwong"
+      ],
+      "minCm": null,
+      "bagLimit": 5,
+      "grouped": true
+    },
+    {
+      "name": "Moses Snapper",
+      "aliases": [
+        "moses snapper",
+        "moses perch"
+      ],
+      "minCm": null,
+      "bagLimit": 5
+    },
+    {
+      "name": "Mullet (Sea/Bully)",
+      "group": "Mullet",
+      "aliases": [
+        "mullet",
+        "sea mullet",
+        "bully mullet"
+      ],
+      "minCm": 30,
+      "bagLimit": 20,
+      "grouped": true
+    },
+    {
+      "name": "Mulloway",
+      "aliases": [
+        "mulloway",
+        "jewfish",
+        "jew"
+      ],
+      "minCm": 70,
+      "bagLimit": 1,
+      "boatLimit": "2 per boat per day where 2+ fishers onboard; charter 3",
+      "notes": "全表最紧的袋限——每人每天 1 条。"
+    },
+    {
+      "name": "Pearl Perch",
+      "aliases": [
+        "pearl perch"
+      ],
+      "minCm": 30,
+      "bagLimit": 5
+    },
+    {
+      "name": "Eastern Red Scorpionfish (Red Rock Cod)",
+      "aliases": [
+        "red rock cod",
+        "scorpionfish"
+      ],
+      "minCm": null,
+      "bagLimit": 5
+    },
+    {
+      "name": "Redfish (Nannygai)",
+      "aliases": [
+        "redfish",
+        "nannygai"
+      ],
+      "minCm": 25,
+      "bagLimit": 1
+    },
+    {
+      "name": "Rock Blackfish (Black Drummer)",
+      "aliases": [
+        "rock blackfish",
+        "black drummer",
+        "drummer",
+        "pig"
+      ],
+      "minCm": 30,
+      "bagLimit": 10
+    },
+    {
+      "name": "Sailfish",
+      "aliases": [
+        "sailfish"
+      ],
+      "minCm": null,
+      "bagLimit": 1
+    },
+    {
+      "name": "Samsonfish & Amberjack",
+      "aliases": [
+        "samsonfish",
+        "amberjack",
+        "samson"
+      ],
+      "minCm": null,
+      "bagLimit": 5,
+      "grouped": true
+    },
+    {
+      "name": "Australian Sawtail",
+      "aliases": [
+        "sawtail"
+      ],
+      "minCm": null,
+      "bagLimit": 5
+    },
+    {
+      "name": "Shark (Wobbegong)",
+      "group": "Sharks and rays",
+      "aliases": [
+        "wobbegong"
+      ],
+      "minCm": null,
+      "bagLimit": 0,
+      "protected": true,
+      "notes": "只能放流。"
+    },
+    {
+      "name": "Shark (School)",
+      "group": "Sharks and rays",
+      "aliases": [
+        "school shark",
+        "gummy shark"
+      ],
+      "minCm": 91,
+      "bagLimit": 5,
+      "grouped": true
+    },
+    {
+      "name": "Shark (Mako / Whaler / Tiger / Hammerhead)",
+      "group": "Sharks and rays",
+      "aliases": [
+        "mako",
+        "whaler",
+        "bronze whaler",
+        "tiger shark",
+        "hammerhead"
+      ],
+      "minCm": null,
+      "bagLimit": 5,
+      "grouped": true,
+      "notes": "虎鲨/灰鲭鲨/双髻鲨/真鲨合计只能 1 条。仅允许平滑双髻鲨；大双髻鲨与路氏双髻鲨为保护物种，须立即放流。"
+    },
+    {
+      "name": "Snapper",
+      "aliases": [
+        "snapper",
+        "reddie",
+        "squire"
+      ],
+      "minCm": 30,
+      "bagLimit": 10
+    },
+    {
+      "name": "Spearfish (Shortbill)",
+      "aliases": [
+        "spearfish"
+      ],
+      "minCm": null,
+      "bagLimit": 1
+    },
+    {
+      "name": "Swordfish",
+      "aliases": [
+        "swordfish"
+      ],
+      "minCm": null,
+      "bagLimit": 1
+    },
+    {
+      "name": "Tailor",
+      "aliases": [
+        "tailor",
+        "chopper",
+        "bluefish"
+      ],
+      "minCm": 30,
+      "bagLimit": 10,
+      "possessionLimit": 20
+    },
+    {
+      "name": "Teraglin",
+      "aliases": [
+        "teraglin",
+        "trag"
+      ],
+      "minCm": 38,
+      "bagLimit": 5
+    },
+    {
+      "name": "Trevally (Silver)",
+      "group": "Trevallies",
+      "aliases": [
+        "trevally",
+        "silver trevally",
+        "trev"
+      ],
+      "minCm": 30,
+      "bagLimit": 10,
+      "possessionLimit": 20,
+      "grouped": true
+    },
+    {
+      "name": "Trevally (other)",
+      "group": "Trevallies",
+      "aliases": [
+        "golden trevally",
+        "bigeye trevally",
+        "teeth trevally"
+      ],
+      "minCm": null,
+      "bagLimit": 10,
+      "possessionLimit": 20,
+      "grouped": true
+    },
+    {
+      "name": "Tuna (Albacore)",
+      "group": "Tuna",
+      "aliases": [
+        "albacore"
+      ],
+      "minCm": 90,
+      "bagLimit": 2,
+      "grouped": true,
+      "notes": "90cm 及以上合计 2 条；不足 90cm 计入该组 5 条上限。"
+    },
+    {
+      "name": "Tuna (Yellowfin)",
+      "group": "Tuna",
+      "aliases": [
+        "yellowfin",
+        "yellowfin tuna"
+      ],
+      "minCm": null,
+      "bagLimit": 5,
+      "grouped": true
+    },
+    {
+      "name": "Tuna (Southern Bluefin)",
+      "aliases": [
+        "southern bluefin",
+        "sbt",
+        "bluefin"
+      ],
+      "minCm": null,
+      "bagLimit": 1
+    },
+    {
+      "name": "Wahoo",
+      "aliases": [
+        "wahoo"
+      ],
+      "minCm": null,
+      "bagLimit": 5
+    },
+    {
+      "name": "Whiting (Sand)",
+      "group": "Whiting",
+      "aliases": [
+        "whiting",
+        "sand whiting",
+        "summer whiting"
+      ],
+      "minCm": 27,
+      "bagLimit": 20,
+      "grouped": true
+    },
+    {
+      "name": "Yellowtail Kingfish",
+      "aliases": [
+        "kingfish",
+        "kingie",
+        "king",
+        "yellowtail kingfish",
+        "rat king"
+      ],
+      "minCm": 65,
+      "bagLimit": 5
+    },
+    {
+      "name": "Abalone (Blacklip)",
+      "aliases": [
+        "abalone",
+        "abs"
+      ],
+      "minCm": 11.7,
+      "bagLimit": 2,
+      "invertebrate": true
+    },
+    {
+      "name": "Blue Swimmer Crab",
+      "aliases": [
+        "blue swimmer",
+        "blue manna",
+        "sand crab"
+      ],
+      "minCm": 6.5,
+      "bagLimit": 10,
+      "possessionLimit": 20,
+      "invertebrate": true
+    },
+    {
+      "name": "Mud Crab",
+      "aliases": [
+        "mud crab"
+      ],
+      "minCm": 8.5,
+      "bagLimit": 5,
+      "invertebrate": true
+    },
+    {
+      "name": "Spanner Crab",
+      "aliases": [
+        "spanner crab"
+      ],
+      "minCm": 9.3,
+      "bagLimit": 10,
+      "invertebrate": true
+    },
+    {
+      "name": "Eastern Rock Lobster",
+      "aliases": [
+        "lobster",
+        "eastern rock lobster",
+        "cray"
+      ],
+      "minCm": 10.4,
+      "maxCm": 18,
+      "bagLimit": 3,
+      "invertebrate": true,
+      "notes": "各类龙虾合计 3 只。"
+    },
+    {
+      "name": "Octopus",
+      "aliases": [
+        "octopus",
+        "occ"
+      ],
+      "minCm": null,
+      "bagLimit": 10,
+      "invertebrate": true,
+      "notes": "不得从 NSW 的海岸岩石平台，或 Sydney Harbour 的岩石平台采捕。"
+    },
+    {
+      "name": "Squid & Cuttlefish",
+      "aliases": [
+        "squid",
+        "cuttlefish",
+        "calamari"
+      ],
+      "minCm": null,
+      "bagLimit": 20,
+      "invertebrate": true
+    },
+    {
+      "name": "Prawns",
+      "aliases": [
+        "prawn",
+        "shrimp"
+      ],
+      "minCm": null,
+      "bagLimit": "10 litres",
+      "invertebrate": true
+    },
+    {
+      "name": "Pipis",
+      "aliases": [
+        "pipi",
+        "pipis"
+      ],
+      "minCm": null,
+      "bagLimit": "50 (max 20 cockles, with cockles/mussels)",
+      "invertebrate": true,
+      "notes": "仅限作饵。不得在距高潮线 50m 以外采捕。"
+    }
+  ]
+}

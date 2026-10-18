@@ -35,6 +35,7 @@ node scripts/fishing.mjs conditions --at "Collaroy Beach, NSW"   # Open-Meteo �
 | `catch` | 钓获记录，写入 jsonl，当场判断合规 | 否 |
 | `stats` | 钓获的描述性统计 | 否 |
 | `marks` | 管理本地点位（鱼礁/FAD/沉船/私房点） | 否 |
+| `gutters` | 卫星检测的沙滩沟槽（surf-sat v3） | 否 |
 | `doctor` | 检查 key 状态与各服务连通性 | 否 |
 
 ## 用法
@@ -117,6 +118,14 @@ score = 100 × ( 0.35·潮流 + 0.30·光线 + 0.20·风 + 0.10·涌 + 0.05·潮
 - **bag/size limit 结构化数据**：全澳无开放接口，链接给人。
 - **实时波浪浮标**：data.nsw 上只有指向 ENV 网站的链接，没有 API；MHL 的 MHLADAS 是要订阅的。
 - **其他州**：目前只接了 NSW 的分区。VIC/QLD/WA 各有各的 portal，没做。
+
+## 沟槽从哪来
+
+`data/gutters.json` 由 `scripts/import-gutters.mjs` 从本地项目 `~/surf-sat/out/gutters_v3.kml` 生成：88 个点位、24 个海滩、10 个多日期确认。
+
+那个项目的 v3 检测器先拿 OSM 的 `natural=bare_rock/reef/cliff`、`man-made=breakwater/groyne` 和有名字的 `swimming_pool` 做掩膜、外扩 60m 成走廊，再在剩余沙质段找"比邻域更暗且白浪更少"的条带。v1 曾把 Mona Vale 的岩池判成沟槽（9/9 确认），v3 修掉后降为 4/9。
+
+重新导入：`node scripts/import-gutters.mjs [别的KML路径]`
 
 ## 点位数据放哪
 

@@ -534,6 +534,15 @@ function renderReport(location, analyses, meta = {}) {
   out.push(
     `数据源 ${meta.source ?? "?"} · ${location.lat.toFixed(4)}, ${location.lng.toFixed(4)} · ${location.timeZone}`
   );
+  if (meta.guttersNear?.length) {
+    const confirmed = meta.guttersNear.filter((g) => g.confidence === "confirmed");
+    const nearest = [...meta.guttersNear].sort((a, b) => a.km - b.km)[0];
+    out.push(
+      `- 沟槽：2km 内 ${meta.guttersNear.length} 个` +
+        (confirmed.length ? `（**${confirmed.length} 个多日期确认**）` : "（全部单次检出）") +
+        ` · 最近 ${(nearest.km * 1000).toFixed(0)}m at ${nearest.lat.toFixed(5)},${nearest.lng.toFixed(5)}`
+    );
+  }
   for (const z of meta.zones ?? []) {
     out.push(
       z.noTake
@@ -765,6 +774,7 @@ const DATA_DIR = fileURLToPath(new URL("../data/", import.meta.url));
 const SPECIES_FILE = join(DATA_DIR, "species.json");
 const MARKS_FILE = join(DATA_DIR, "reefs.json"); // shared/public marks (committed)
 const LOCAL_MARKS_FILE = join(DATA_DIR, "reefs.local.json"); // personal marks (gitignored)
+const GUTTERS_FILE = join(DATA_DIR, "gutters.json"); // surf-sat detections
 const CATCH_FILE = join(DATA_DIR, "catches.jsonl");
 
 async function readJson(file, fallback) {
@@ -992,6 +1002,11 @@ async function loadMarks() {
   return [...pub, ...own];
 }
 
+async function loadGutters() {
+  const f = await readJson(GUTTERS_FILE, { gutters: [] });
+  return f.gutters ?? [];
+}
+
 async function saveMarks(marks, file = LOCAL_MARKS_FILE) {
   await mkdir(DATA_DIR, { recursive: true });
   await writeFile(
@@ -1060,6 +1075,60 @@ async function cmdMarks(flags) {
         ` · ${m.lat.toFixed(5)},${m.lng.toFixed(5)}${m.verified ? "" : " · 未核对"}`
     );
   }
+}
+
+async function cmdGutters(flags) {
+  const all = await loadGutters();
+  if (!all.length)
+    throw new Error("data/gutters.json 为空。先跑: node scripts/import-gutters.mjs");
+
+  const onlyConfirmed = Boolean(flags.confirmed);
+  let list = onlyConfirmed ? all.filter((g) => g.confidence === "confirmed") : all;
+
+  if (flags.at && flags.at !== true) {
+    const geo = await geocode(String(flags.at));
+    const radiusKm = Number(flags.km ?? 3);
+    list = list
+      .map((g) => ({ ...g, km: +haversineKm(geo.lat, geo.lng, g.lat, g.lng).toFixed(2) }))
+      .filter((g) => g.km <= radiusKm)
+      .sort((a, b) => a.km - b.km);
+    if (flags.json) return console.log(JSON.stringify({ origin: geo, radiusKm, gutters: list }, null, 2));
+    console.log(`# 沟槽 — ${geo.label.split(",")[0]} ${radiusKm}km 内（${list.length} 个）\n`);
+    for (const g of list)
+      console.log(
+        `- ${g.km}km  **${g.site}** · ${g.confidence === "confirmed" ? `确认 ${g.dates}/${g.nDates}` : "单次"}` +
+          `${g.lengthM ? ` · 长${g.lengthM}m` : ""} · ${g.lat.toFixed(5)},${g.lng.toFixed(5)}`
+      );
+    console.log("\n_单次 = 只在一次卫星拍摄里检出，是线索不是结论。_");
+    return;
+  }
+
+  const bySite = new Map();
+  for (const g of list) {
+    const r = bySite.get(g.site) ?? { total: 0, confirmed: 0, best: 0, maxLen: 0 };
+    r.total++;
+    if (g.confidence === "confirmed") {
+      r.confirmed++;
+      r.best = Math.max(r.best, g.dates);
+    }
+    r.maxLen = Math.max(r.maxLen, g.lengthM ?? 0);
+    bySite.set(g.site, r);
+  }
+  const rows = [...bySite.entries()].sort(
+    (a, b) => b[1].confirmed - a[1].confirmed || b[1].total - a[1].total
+  );
+  if (flags.json)
+    return console.log(
+      JSON.stringify(rows.map(([site, r]) => ({ site, ...r })), null, 2)
+    );
+  console.log(`# 沟槽检测结果（${list.length} 个 / ${bySite.size} 个海滩）\n`);
+  console.log("| 海滩 | 沟槽 | 确认 | 最多次数 | 最长 |");
+  console.log("|---|---|---|---|---|");
+  for (const [site, r] of rows)
+    console.log(
+      `| ${site} | ${r.total} | ${r.confirmed} | ${r.best ? `${r.best}/9` : "—"} | ${r.maxLen ? `${r.maxLen}m` : "—"} |`
+    );
+  console.log("\n_数据来自 surf-sat v3（OSM 硬质结构掩膜后检测）。单次检出=线索。_");
 }
 
 // ------------------------------------------------------------------- doctor
@@ -1133,6 +1202,25 @@ async function cmdSpots(flags) {
     }))
     .filter((m) => m.km <= radiusKm);
 
+  // Gutters are a different kind of thing: a place to stand, not a structure
+  // offshore. Distance-sorted with the rest, but de-duplicated tighter (60 m)
+  // because two gutters on one beach can sit 70 m apart.
+  const gutters = (await loadGutters())
+    .map((g) => ({
+      name: g.name,
+      kind:
+        g.confidence === "confirmed"
+          ? `沟槽·确认${g.dates}/${g.nDates}`
+          : "沟槽·单次",
+      lat: g.lat,
+      lng: g.lng,
+      lengthM: g.lengthM,
+      confidence: g.confidence,
+      km: +haversineKm(geo.lat, geo.lng, g.lat, g.lng).toFixed(1),
+      source: "gutter",
+    }))
+    .filter((g) => g.km <= radiusKm);
+
   const merged = [...local, ...osm];
   merged.sort((a, b) => a.km - b.km);
   const spots = [];
@@ -1141,6 +1229,11 @@ async function cmdSpots(flags) {
     spots.push(sp);
     if (spots.length >= 30) break;
   }
+  for (const g of gutters) {
+    if (spots.some((k) => haversineKm(k.lat, k.lng, g.lat, g.lng) < 0.06)) continue;
+    spots.push(g);
+  }
+  spots.sort((a, b) => a.km - b.km);
 
   const zoneLists = await timed("mpa", () =>
     Promise.all(spots.map((sp) => mpaAt(sp.lat, sp.lng).catch(() => [])))
@@ -1149,14 +1242,17 @@ async function cmdSpots(flags) {
 
   if (flags.json) return console.log(JSON.stringify({ origin: geo, radiusKm, spots }, null, 2));
   console.log(`# 钓点 — ${geo.label}`);
-  console.log(`半径 ${radiusKm}km，共 ${spots.length} 处（本地 ${local.length} / OSM ${osm.length}）\n`);
+  console.log(
+    `半径 ${radiusKm}km，共 ${spots.length} 处（本地 ${local.length} / OSM ${osm.length} / 沟槽 ${spots.filter((x) => x.source === "gutter").length}）\n`
+  );
   for (const s of spots) {
     const z = s.zones?.find((x) => x.noTake) ?? s.zones?.[0];
     const tag = z ? (z.noTake ? ` · 🚫 ${z.name}（禁钓）` : ` · ⚠️ ${z.name}（${z.zone}）`) : "";
     const depth = s.depthM ? ` · ${s.depthM}m` : "";
     const acc = s.source === "local" ? ` · ${ACCESS_LABEL[s.access] ?? ""}` : "";
+    const len = s.lengthM ? ` · 长${s.lengthM}m` : "";
     console.log(
-      `- ${s.km}km  **${s.name}** · ${s.kind}${depth}${acc} · ${s.lat.toFixed(5)},${s.lng.toFixed(5)}${tag}`
+      `- ${s.km}km  **${s.name}** · ${s.kind}${depth}${acc}${len} · ${s.lat.toFixed(5)},${s.lng.toFixed(5)}${tag}`
     );
   }
   console.log("\n_OSM 结构未验证公众可达性；本地点位由你自己维护。_");
@@ -1204,6 +1300,9 @@ async function cmdConditions(flags) {
     timeZone: "Australia/Sydney",
   };
   const zones = await mpaAt(location.lat, location.lng).catch(() => []);
+  const guttersNear = (await loadGutters())
+    .map((g) => ({ ...g, km: haversineKm(location.lat, location.lng, g.lat, g.lng) }))
+    .filter((g) => g.km <= 2);
 
   const map = buildDays(weather);
   const model = tideModel(map);
@@ -1221,7 +1320,7 @@ async function cmdConditions(flags) {
     console.log(JSON.stringify({ location, source, zones, days: analyses }, null, 2));
     return;
   }
-  console.log(renderReport(location, analyses, { source, zones }));
+  console.log(renderReport(location, analyses, { source, zones, guttersNear }));
 }
 
 async function main() {
@@ -1234,6 +1333,7 @@ async function main() {
     else if (command === "stats") await cmdStats(flags);
     else if (command === "marks") await cmdMarks(flags);
     else if (command === "doctor") await cmdDoctor();
+    else if (command === "gutters") await cmdGutters(flags);
     else {
       console.log(`au-fishing
 
@@ -1243,6 +1343,7 @@ async function main() {
   catch       --species "Dusky Flathead" --size 42 [--spot X] [--released] [--tide falling]
   stats       [--json]                                      钓获统计
   marks       [--near X] | marks add --name X --lat Y --lng Z [--type reef] [--depth 30]
+  gutters     [--at X] [--km 3] [--confirmed] [--json]     沟槽（surf-sat 卫星检测）
   doctor                                                    检查 key / 服务连通性
 
 Env: WILLYWEATHER_API_KEY (only needed for tides; otherwise Open-Meteo fallback)

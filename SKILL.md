@@ -1,6 +1,6 @@
 ---
 name: au-fishing
-description: 澳洲（NSW）钓鱼助手 — 潮汐/风/涌窗口排名、NSW 鱼种尺寸与袋限查询、钓获记录与统计、本地点位管理。当用户问什么时候去钓、潮水怎么样、这条鱼够不够尺寸、能留几条、附近有什么钓点、或要记录钓获时使用。
+description: 澳洲（NSW）钓鱼助手 — 潮汐/风/涌窗口排名 + 卫星检测的沙滩沟槽位置 + NSW 鱼种尺寸/袋限 + 钓获记录。当用户问什么时候去钓、站在沙滩哪儿、潮水怎么样、这条鱼够不够尺寸、能留几条、或要记录钓获时使用。
 ---
 
 # au-fishing
@@ -44,6 +44,9 @@ node scripts/fishing.mjs catch --species "Dusky Flathead" --size 42 --spot "Narr
 # 统计（描述性，不是校准）
 node scripts/fishing.mjs stats
 
+# 卫星检测的沙滩沟槽（surf-sat）
+node scripts/fishing.mjs gutters --at "Collaroy Beach" --km 1 --confirmed
+
 # 本地点位（人工鱼礁、FAD、沉船、你自己的私房点）
 node scripts/fishing.mjs marks
 node scripts/fishing.mjs marks add --name "..." --lat -33.85 --lng 151.30 --type reef --depth 38
@@ -72,6 +75,17 @@ node scripts/fishing.mjs marks add --name "..." --lat -33.85 --lng 151.30 --type
 - 说清**为什么**这个窗口好（涨/落潮中段水在动 + 贴近日出/日落），不要只报分数。
 - 分数 < 55 的窗口不输出，如果没有窗口就直接说「这天没有明显窗口」，不要硬凑。
 - ⚠️ 行必须原样转达（涌浪 ≥2m、风 ≥25km/h、无潮汐数据）。
+
+## 沟槽（"站在沙滩哪儿"）
+
+`data/gutters.json` 来自 `~/surf-sat` 的 v3 检测器：从 ESRI 卫星影像找沙滩上的沟槽（gutter），**先用 OSM 的岩礁/崖壁/岩池/丁坝数据把硬质结构排除掉**再做检测。
+
+- `confirmed`：在多次独立卫星拍摄的同一位置都检出（`dates`/`nDates`）
+- `single`：只检出一次，**是线索不是结论**
+
+回答"去哪钓"时：先看 `gutters`，再看 `spots`。沟槽是沙滩钓的核心地形，人工鱼礁对岸钓基本无用。
+
+**必须说清的两件事**：① 单次检出不等于存在；② 排除区大的海滩（岩岸为主）检出 0 个，不代表没有沟槽，只代表没得评估。
 
 ## 鱼种规则（NSW）
 
@@ -121,6 +135,7 @@ node scripts/fishing.mjs marks add --name "..." --lat -33.85 --lng 151.30 --type
 ## 数据来源与许可
 
 - NSW DPIRD 海水袋限/尺寸页（手工转录，CC-BY），数据截至 2026-10-18。
+- 沟槽点位：本地项目 `~/surf-sat`（ESRI World Imagery 派生，OSM 掩膜），见其 `GUTTERS_V3.md`。
 - WillyWeather API v2（潮汐/风/涌/日月），需要个人 key。
 - Open-Meteo marine + forecast API（风/涌/日出日落），免费无 key，CC-BY 4.0。
 - NSW SEED ArcGIS REST：`spatial.industry.nsw.gov.au/.../PUBLIC/Marine_Protected_Areas/MapServer/0`，CC-BY 4.0。

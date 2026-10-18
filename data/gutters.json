@@ -1,0 +1,893 @@
+{
+  "version": 1,
+  "source": "surf-sat out/gutters_v3.kml",
+  "method": "Gutters detected from ESRI World Imagery (~0.5 m/px). Rock / reef / cliff / rockpool / groyne corridors excluded via OSM before detection.",
+  "caveat": "A gutter is a channel where fish cruise, not a guaranteed fish-holding spot. Single-date entries are leads, not conclusions. Read the water on the day.",
+  "counts": {
+    "total": 88,
+    "confirmed": 10,
+    "single": 78
+  },
+  "gutters": [
+    {
+      "name": "collaroy gutter (2/9)",
+      "site": "collaroy",
+      "lat": -33.7298,
+      "lng": 151.301952,
+      "confidence": "confirmed",
+      "dates": 2,
+      "nDates": 9,
+      "lengthM": 69
+    },
+    {
+      "name": "collaroy gutter (2/9)",
+      "site": "collaroy",
+      "lat": -33.730837,
+      "lng": 151.302537,
+      "confidence": "confirmed",
+      "dates": 2,
+      "nDates": 9,
+      "lengthM": 160
+    },
+    {
+      "name": "collaroy gutter (2/9)",
+      "site": "collaroy",
+      "lat": -33.732073,
+      "lng": 151.303293,
+      "confidence": "confirmed",
+      "dates": 2,
+      "nDates": 9,
+      "lengthM": 37
+    },
+    {
+      "name": "mona-vale gutter (4/9)",
+      "site": "mona-vale",
+      "lat": -33.684261,
+      "lng": 151.311742,
+      "confidence": "confirmed",
+      "dates": 4,
+      "nDates": 9,
+      "lengthM": 64
+    },
+    {
+      "name": "mona-vale gutter (4/9)",
+      "site": "mona-vale",
+      "lat": -33.685485,
+      "lng": 151.31138,
+      "confidence": "confirmed",
+      "dates": 4,
+      "nDates": 9,
+      "lengthM": 72
+    },
+    {
+      "name": "mona-vale gutter (3/9)",
+      "site": "mona-vale",
+      "lat": -33.683152,
+      "lng": 151.31251,
+      "confidence": "confirmed",
+      "dates": 3,
+      "nDates": 9,
+      "lengthM": 88
+    },
+    {
+      "name": "mona-vale gutter (2/9)",
+      "site": "mona-vale",
+      "lat": -33.686311,
+      "lng": 151.311569,
+      "confidence": "confirmed",
+      "dates": 2,
+      "nDates": 9,
+      "lengthM": 44
+    },
+    {
+      "name": "mona-vale gutter (2/9)",
+      "site": "mona-vale",
+      "lat": -33.68226,
+      "lng": 151.312549,
+      "confidence": "confirmed",
+      "dates": 2,
+      "nDates": 9,
+      "lengthM": 72
+    },
+    {
+      "name": "bondi gutter (3/9)",
+      "site": "bondi",
+      "lat": -33.891374,
+      "lng": 151.279721,
+      "confidence": "confirmed",
+      "dates": 3,
+      "nDates": 9,
+      "lengthM": 60
+    },
+    {
+      "name": "bondi gutter (3/9)",
+      "site": "bondi",
+      "lat": -33.892281,
+      "lng": 151.277576,
+      "confidence": "confirmed",
+      "dates": 3,
+      "nDates": 9,
+      "lengthM": 66
+    },
+    {
+      "name": "bondi #1",
+      "site": "bondi",
+      "lat": -33.892141,
+      "lng": 151.277934,
+      "confidence": "single",
+      "dates": 1,
+      "nDates": null,
+      "lengthM": null
+    },
+    {
+      "name": "bondi #2",
+      "site": "bondi",
+      "lat": -33.891941,
+      "lng": 151.277369,
+      "confidence": "single",
+      "dates": 1,
+      "nDates": null,
+      "lengthM": null
+    },
+    {
+      "name": "bondi #3",
+      "site": "bondi",
+      "lat": -33.892236,
+      "lng": 151.276985,
+      "confidence": "single",
+      "dates": 1,
+      "nDates": null,
+      "lengthM": null
+    },
+    {
+      "name": "collaroy #1",
+      "site": "collaroy",
+      "lat": -33.721513,
+      "lng": 151.299832,
+      "confidence": "single",
+      "dates": 1,
+      "nDates": null,
+      "lengthM": null
+    },
+    {
+      "name": "collaroy #2",
+      "site": "collaroy",
+      "lat": -33.722329,
+      "lng": 151.300076,
+      "confidence": "single",
+      "dates": 1,
+      "nDates": null,
+      "lengthM": null
+    },
+    {
+      "name": "collaroy #3",
+      "site": "collaroy",
+      "lat": -33.724173,
+      "lng": 151.299682,
+      "confidence": "single",
+      "dates": 1,
+      "nDates": null,
+      "lengthM": null
+    },
+    {
+      "name": "collaroy #4",
+      "site": "collaroy",
+      "lat": -33.725326,
+      "lng": 151.300366,
+      "confidence": "single",
+      "dates": 1,
+      "nDates": null,
+      "lengthM": null
+    },
+    {
+      "name": "collaroy #5",
+      "site": "collaroy",
+      "lat": -33.726401,
+      "lng": 151.300285,
+      "confidence": "single",
+      "dates": 1,
+      "nDates": null,
+      "lengthM": null
+    },
+    {
+      "name": "collaroy #6",
+      "site": "collaroy",
+      "lat": -33.728305,
+      "lng": 151.301558,
+      "confidence": "single",
+      "dates": 1,
+      "nDates": null,
+      "lengthM": null
+    },
+    {
+      "name": "collaroy #7",
+      "site": "collaroy",
+      "lat": -33.732341,
+      "lng": 151.302246,
+      "confidence": "single",
+      "dates": 1,
+      "nDates": null,
+      "lengthM": null
+    },
+    {
+      "name": "collaroy #8",
+      "site": "collaroy",
+      "lat": -33.736847,
+      "lng": 151.306466,
+      "confidence": "single",
+      "dates": 1,
+      "nDates": null,
+      "lengthM": null
+    },
+    {
+      "name": "dee-why #1",
+      "site": "dee-why",
+      "lat": -33.745295,
+      "lng": 151.305701,
+      "confidence": "single",
+      "dates": 1,
+      "nDates": null,
+      "lengthM": null
+    },
+    {
+      "name": "dee-why #2",
+      "site": "dee-why",
+      "lat": -33.746986,
+      "lng": 151.303607,
+      "confidence": "single",
+      "dates": 1,
+      "nDates": null,
+      "lengthM": null
+    },
+    {
+      "name": "dee-why #3",
+      "site": "dee-why",
+      "lat": -33.747665,
+      "lng": 151.302686,
+      "confidence": "single",
+      "dates": 1,
+      "nDates": null,
+      "lengthM": null
+    },
+    {
+      "name": "dee-why #4",
+      "site": "dee-why",
+      "lat": -33.748806,
+      "lng": 151.302364,
+      "confidence": "single",
+      "dates": 1,
+      "nDates": null,
+      "lengthM": null
+    },
+    {
+      "name": "dee-why #5",
+      "site": "dee-why",
+      "lat": -33.749638,
+      "lng": 151.300262,
+      "confidence": "single",
+      "dates": 1,
+      "nDates": null,
+      "lengthM": null
+    },
+    {
+      "name": "dee-why #6",
+      "site": "dee-why",
+      "lat": -33.751217,
+      "lng": 151.298644,
+      "confidence": "single",
+      "dates": 1,
+      "nDates": null,
+      "lengthM": null
+    },
+    {
+      "name": "greenhills #1",
+      "site": "greenhills",
+      "lat": -34.035772,
+      "lng": 151.182851,
+      "confidence": "single",
+      "dates": 1,
+      "nDates": null,
+      "lengthM": null
+    },
+    {
+      "name": "greenhills #2",
+      "site": "greenhills",
+      "lat": -34.035821,
+      "lng": 151.180692,
+      "confidence": "single",
+      "dates": 1,
+      "nDates": null,
+      "lengthM": null
+    },
+    {
+      "name": "greenhills #3",
+      "site": "greenhills",
+      "lat": -34.038817,
+      "lng": 151.170557,
+      "confidence": "single",
+      "dates": 1,
+      "nDates": null,
+      "lengthM": null
+    },
+    {
+      "name": "greenhills #4",
+      "site": "greenhills",
+      "lat": -34.039714,
+      "lng": 151.168564,
+      "confidence": "single",
+      "dates": 1,
+      "nDates": null,
+      "lengthM": null
+    },
+    {
+      "name": "greenhills #5",
+      "site": "greenhills",
+      "lat": -34.040643,
+      "lng": 151.167003,
+      "confidence": "single",
+      "dates": 1,
+      "nDates": null,
+      "lengthM": null
+    },
+    {
+      "name": "greenhills #6",
+      "site": "greenhills",
+      "lat": -34.041184,
+      "lng": 151.166399,
+      "confidence": "single",
+      "dates": 1,
+      "nDates": null,
+      "lengthM": null
+    },
+    {
+      "name": "greenhills #7",
+      "site": "greenhills",
+      "lat": -34.041548,
+      "lng": 151.165439,
+      "confidence": "single",
+      "dates": 1,
+      "nDates": null,
+      "lengthM": null
+    },
+    {
+      "name": "manly #1",
+      "site": "manly",
+      "lat": -33.792272,
+      "lng": 151.291209,
+      "confidence": "single",
+      "dates": 1,
+      "nDates": null,
+      "lengthM": null
+    },
+    {
+      "name": "manly #2",
+      "site": "manly",
+      "lat": -33.793018,
+      "lng": 151.291128,
+      "confidence": "single",
+      "dates": 1,
+      "nDates": null,
+      "lengthM": null
+    },
+    {
+      "name": "manly #3",
+      "site": "manly",
+      "lat": -33.795256,
+      "lng": 151.290522,
+      "confidence": "single",
+      "dates": 1,
+      "nDates": null,
+      "lengthM": null
+    },
+    {
+      "name": "manly #4",
+      "site": "manly",
+      "lat": -33.797726,
+      "lng": 151.291283,
+      "confidence": "single",
+      "dates": 1,
+      "nDates": null,
+      "lengthM": null
+    },
+    {
+      "name": "mona-vale #1",
+      "site": "mona-vale",
+      "lat": -33.682205,
+      "lng": 151.314815,
+      "confidence": "single",
+      "dates": 1,
+      "nDates": null,
+      "lengthM": null
+    },
+    {
+      "name": "mona-vale #2",
+      "site": "mona-vale",
+      "lat": -33.684724,
+      "lng": 151.314769,
+      "confidence": "single",
+      "dates": 1,
+      "nDates": null,
+      "lengthM": null
+    },
+    {
+      "name": "mona-vale #3",
+      "site": "mona-vale",
+      "lat": -33.685832,
+      "lng": 151.311173,
+      "confidence": "single",
+      "dates": 1,
+      "nDates": null,
+      "lengthM": null
+    },
+    {
+      "name": "narrabeen #1",
+      "site": "narrabeen",
+      "lat": -33.709482,
+      "lng": 151.304466,
+      "confidence": "single",
+      "dates": 1,
+      "nDates": null,
+      "lengthM": null
+    },
+    {
+      "name": "narrabeen #2",
+      "site": "narrabeen",
+      "lat": -33.711958,
+      "lng": 151.303162,
+      "confidence": "single",
+      "dates": 1,
+      "nDates": null,
+      "lengthM": null
+    },
+    {
+      "name": "narrabeen #3",
+      "site": "narrabeen",
+      "lat": -33.714203,
+      "lng": 151.303445,
+      "confidence": "single",
+      "dates": 1,
+      "nDates": null,
+      "lengthM": null
+    },
+    {
+      "name": "narrabeen #4",
+      "site": "narrabeen",
+      "lat": -33.715535,
+      "lng": 151.302034,
+      "confidence": "single",
+      "dates": 1,
+      "nDates": null,
+      "lengthM": null
+    },
+    {
+      "name": "narrabeen #5",
+      "site": "narrabeen",
+      "lat": -33.715933,
+      "lng": 151.301447,
+      "confidence": "single",
+      "dates": 1,
+      "nDates": null,
+      "lengthM": null
+    },
+    {
+      "name": "palm-beach #1",
+      "site": "palm-beach",
+      "lat": -33.592099,
+      "lng": 151.326348,
+      "confidence": "single",
+      "dates": 1,
+      "nDates": null,
+      "lengthM": null
+    },
+    {
+      "name": "palm-beach #2",
+      "site": "palm-beach",
+      "lat": -33.596706,
+      "lng": 151.327578,
+      "confidence": "single",
+      "dates": 1,
+      "nDates": null,
+      "lengthM": null
+    },
+    {
+      "name": "wanda #1",
+      "site": "wanda",
+      "lat": -34.042069,
+      "lng": 151.164882,
+      "confidence": "single",
+      "dates": 1,
+      "nDates": null,
+      "lengthM": null
+    },
+    {
+      "name": "wanda #2",
+      "site": "wanda",
+      "lat": -34.04381,
+      "lng": 151.162849,
+      "confidence": "single",
+      "dates": 1,
+      "nDates": null,
+      "lengthM": null
+    },
+    {
+      "name": "wanda #3",
+      "site": "wanda",
+      "lat": -34.044928,
+      "lng": 151.162012,
+      "confidence": "single",
+      "dates": 1,
+      "nDates": null,
+      "lengthM": null
+    },
+    {
+      "name": "wanda #4",
+      "site": "wanda",
+      "lat": -34.046336,
+      "lng": 151.160947,
+      "confidence": "single",
+      "dates": 1,
+      "nDates": null,
+      "lengthM": null
+    },
+    {
+      "name": "wanda #5",
+      "site": "wanda",
+      "lat": -34.046777,
+      "lng": 151.160533,
+      "confidence": "single",
+      "dates": 1,
+      "nDates": null,
+      "lengthM": null
+    },
+    {
+      "name": "wanda #6",
+      "site": "wanda",
+      "lat": -34.047935,
+      "lng": 151.159659,
+      "confidence": "single",
+      "dates": 1,
+      "nDates": null,
+      "lengthM": null
+    },
+    {
+      "name": "wanda #7",
+      "site": "wanda",
+      "lat": -34.049572,
+      "lng": 151.158595,
+      "confidence": "single",
+      "dates": 1,
+      "nDates": null,
+      "lengthM": null
+    },
+    {
+      "name": "bombo #1",
+      "site": "bombo",
+      "lat": -34.658607,
+      "lng": 150.855287,
+      "confidence": "single",
+      "dates": 1,
+      "nDates": null,
+      "lengthM": null
+    },
+    {
+      "name": "bombo #2",
+      "site": "bombo",
+      "lat": -34.659557,
+      "lng": 150.855247,
+      "confidence": "single",
+      "dates": 1,
+      "nDates": null,
+      "lengthM": null
+    },
+    {
+      "name": "bombo #3",
+      "site": "bombo",
+      "lat": -34.663922,
+      "lng": 150.855355,
+      "confidence": "single",
+      "dates": 1,
+      "nDates": null,
+      "lengthM": null
+    },
+    {
+      "name": "bulgo #1",
+      "site": "bulgo",
+      "lat": -34.210196,
+      "lng": 151.01645,
+      "confidence": "single",
+      "dates": 1,
+      "nDates": null,
+      "lengthM": null
+    },
+    {
+      "name": "bulgo #2",
+      "site": "bulgo",
+      "lat": -34.211095,
+      "lng": 151.015294,
+      "confidence": "single",
+      "dates": 1,
+      "nDates": null,
+      "lengthM": null
+    },
+    {
+      "name": "bulgo #3",
+      "site": "bulgo",
+      "lat": -34.213645,
+      "lng": 151.012699,
+      "confidence": "single",
+      "dates": 1,
+      "nDates": null,
+      "lengthM": null
+    },
+    {
+      "name": "bulli #1",
+      "site": "bulli",
+      "lat": -34.347839,
+      "lng": 150.924832,
+      "confidence": "single",
+      "dates": 1,
+      "nDates": null,
+      "lengthM": null
+    },
+    {
+      "name": "coalcliff #1",
+      "site": "coalcliff",
+      "lat": -34.234789,
+      "lng": 150.987927,
+      "confidence": "single",
+      "dates": 1,
+      "nDates": null,
+      "lengthM": null
+    },
+    {
+      "name": "coledale #1",
+      "site": "coledale",
+      "lat": -34.283954,
+      "lng": 150.954024,
+      "confidence": "single",
+      "dates": 1,
+      "nDates": null,
+      "lengthM": null
+    },
+    {
+      "name": "coledale #2",
+      "site": "coledale",
+      "lat": -34.29037,
+      "lng": 150.94893,
+      "confidence": "single",
+      "dates": 1,
+      "nDates": null,
+      "lengthM": null
+    },
+    {
+      "name": "corrimal #1",
+      "site": "corrimal",
+      "lat": -34.372576,
+      "lng": 150.928205,
+      "confidence": "single",
+      "dates": 1,
+      "nDates": null,
+      "lengthM": null
+    },
+    {
+      "name": "corrimal #2",
+      "site": "corrimal",
+      "lat": -34.374752,
+      "lng": 150.926718,
+      "confidence": "single",
+      "dates": 1,
+      "nDates": null,
+      "lengthM": null
+    },
+    {
+      "name": "culburra #1",
+      "site": "culburra",
+      "lat": -34.920643,
+      "lng": 150.767122,
+      "confidence": "single",
+      "dates": 1,
+      "nDates": null,
+      "lengthM": null
+    },
+    {
+      "name": "jones #1",
+      "site": "jones",
+      "lat": -34.635483,
+      "lng": 150.858943,
+      "confidence": "single",
+      "dates": 1,
+      "nDates": null,
+      "lengthM": null
+    },
+    {
+      "name": "jones #2",
+      "site": "jones",
+      "lat": -34.638724,
+      "lng": 150.856628,
+      "confidence": "single",
+      "dates": 1,
+      "nDates": null,
+      "lengthM": null
+    },
+    {
+      "name": "jones #3",
+      "site": "jones",
+      "lat": -34.641129,
+      "lng": 150.856203,
+      "confidence": "single",
+      "dates": 1,
+      "nDates": null,
+      "lengthM": null
+    },
+    {
+      "name": "killalea #1",
+      "site": "killalea",
+      "lat": -34.604988,
+      "lng": 150.87251,
+      "confidence": "single",
+      "dates": 1,
+      "nDates": null,
+      "lengthM": null
+    },
+    {
+      "name": "killalea #2",
+      "site": "killalea",
+      "lat": -34.604744,
+      "lng": 150.870819,
+      "confidence": "single",
+      "dates": 1,
+      "nDates": null,
+      "lengthM": null
+    },
+    {
+      "name": "north-wollongong #1",
+      "site": "north-wollongong",
+      "lat": -34.410688,
+      "lng": 150.90318,
+      "confidence": "single",
+      "dates": 1,
+      "nDates": null,
+      "lengthM": null
+    },
+    {
+      "name": "north-wollongong #2",
+      "site": "north-wollongong",
+      "lat": -34.411752,
+      "lng": 150.903385,
+      "confidence": "single",
+      "dates": 1,
+      "nDates": null,
+      "lengthM": null
+    },
+    {
+      "name": "north-wollongong #3",
+      "site": "north-wollongong",
+      "lat": -34.413149,
+      "lng": 150.902952,
+      "confidence": "single",
+      "dates": 1,
+      "nDates": null,
+      "lengthM": null
+    },
+    {
+      "name": "scarborough #1",
+      "site": "scarborough",
+      "lat": -34.275346,
+      "lng": 150.959099,
+      "confidence": "single",
+      "dates": 1,
+      "nDates": null,
+      "lengthM": null
+    },
+    {
+      "name": "scarborough #2",
+      "site": "scarborough",
+      "lat": -34.276388,
+      "lng": 150.95829,
+      "confidence": "single",
+      "dates": 1,
+      "nDates": null,
+      "lengthM": null
+    },
+    {
+      "name": "shellharbour-n #1",
+      "site": "shellharbour-n",
+      "lat": -34.565092,
+      "lng": 150.870469,
+      "confidence": "single",
+      "dates": 1,
+      "nDates": null,
+      "lengthM": null
+    },
+    {
+      "name": "shellharbour-n #2",
+      "site": "shellharbour-n",
+      "lat": -34.57376,
+      "lng": 150.870075,
+      "confidence": "single",
+      "dates": 1,
+      "nDates": null,
+      "lengthM": null
+    },
+    {
+      "name": "thirroul #1",
+      "site": "thirroul",
+      "lat": -34.317362,
+      "lng": 150.928842,
+      "confidence": "single",
+      "dates": 1,
+      "nDates": null,
+      "lengthM": null
+    },
+    {
+      "name": "thirroul #2",
+      "site": "thirroul",
+      "lat": -34.318091,
+      "lng": 150.928358,
+      "confidence": "single",
+      "dates": 1,
+      "nDates": null,
+      "lengthM": null
+    },
+    {
+      "name": "thirroul #3",
+      "site": "thirroul",
+      "lat": -34.320253,
+      "lng": 150.927149,
+      "confidence": "single",
+      "dates": 1,
+      "nDates": null,
+      "lengthM": null
+    },
+    {
+      "name": "werri #1",
+      "site": "werri",
+      "lat": -34.731417,
+      "lng": 150.842022,
+      "confidence": "single",
+      "dates": 1,
+      "nDates": null,
+      "lengthM": null
+    },
+    {
+      "name": "werri #2",
+      "site": "werri",
+      "lat": -34.731835,
+      "lng": 150.841242,
+      "confidence": "single",
+      "dates": 1,
+      "nDates": null,
+      "lengthM": null
+    },
+    {
+      "name": "werri #3",
+      "site": "werri",
+      "lat": -34.733932,
+      "lng": 150.83957,
+      "confidence": "single",
+      "dates": 1,
+      "nDates": null,
+      "lengthM": null
+    },
+    {
+      "name": "woonona #1",
+      "site": "woonona",
+      "lat": -34.350409,
+      "lng": 150.921924,
+      "confidence": "single",
+      "dates": 1,
+      "nDates": null,
+      "lengthM": null
+    },
+    {
+      "name": "woonona #2",
+      "site": "woonona",
+      "lat": -34.352991,
+      "lng": 150.921134,
+      "confidence": "single",
+      "dates": 1,
+      "nDates": null,
+      "lengthM": null
+    }
+  ]
+}

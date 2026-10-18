@@ -1105,8 +1105,9 @@ async function cmdGutters(flags) {
 
   const bySite = new Map();
   for (const g of list) {
-    const r = bySite.get(g.site) ?? { total: 0, confirmed: 0, best: 0, maxLen: 0 };
+    const r = bySite.get(g.site) ?? { total: 0, confirmed: 0, best: 0, nDates: g.nDates ?? 0, maxLen: 0 };
     r.total++;
+    if (g.nDates) r.nDates = Math.max(r.nDates, g.nDates);
     if (g.confidence === "confirmed") {
       r.confirmed++;
       r.best = Math.max(r.best, g.dates);
@@ -1126,7 +1127,7 @@ async function cmdGutters(flags) {
   console.log("|---|---|---|---|---|");
   for (const [site, r] of rows)
     console.log(
-      `| ${site} | ${r.total} | ${r.confirmed} | ${r.best ? `${r.best}/9` : "—"} | ${r.maxLen ? `${r.maxLen}m` : "—"} |`
+      `| ${site} | ${r.total} | ${r.confirmed} | ${r.best ? `${r.best}/${r.nDates}` : "—"} | ${r.maxLen ? `${r.maxLen}m` : "—"} |`
     );
   console.log("\n_数据来自 surf-sat v3（OSM 硬质结构掩膜后检测）。单次检出=线索。_");
 }

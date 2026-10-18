@@ -3,10 +3,15 @@
   "source": "surf-sat out/gutters_v3.kml",
   "method": "Gutters detected from ESRI World Imagery (~0.5 m/px). Rock / reef / cliff / rockpool / groyne corridors excluded via OSM before detection.",
   "caveat": "A gutter is a channel where fish cruise, not a guaranteed fish-holding spot. Single-date entries are leads, not conclusions. Read the water on the day.",
+  "persistenceSites": [
+    "north-wollongong",
+    "jones",
+    "bombo"
+  ],
   "counts": {
-    "total": 88,
-    "confirmed": 10,
-    "single": 78
+    "total": 90,
+    "confirmed": 21,
+    "single": 69
   },
   "gutters": [
     {
@@ -560,36 +565,6 @@
       "lengthM": null
     },
     {
-      "name": "bombo #1",
-      "site": "bombo",
-      "lat": -34.658607,
-      "lng": 150.855287,
-      "confidence": "single",
-      "dates": 1,
-      "nDates": null,
-      "lengthM": null
-    },
-    {
-      "name": "bombo #2",
-      "site": "bombo",
-      "lat": -34.659557,
-      "lng": 150.855247,
-      "confidence": "single",
-      "dates": 1,
-      "nDates": null,
-      "lengthM": null
-    },
-    {
-      "name": "bombo #3",
-      "site": "bombo",
-      "lat": -34.663922,
-      "lng": 150.855355,
-      "confidence": "single",
-      "dates": 1,
-      "nDates": null,
-      "lengthM": null
-    },
-    {
       "name": "bulgo #1",
       "site": "bulgo",
       "lat": -34.210196,
@@ -690,36 +665,6 @@
       "lengthM": null
     },
     {
-      "name": "jones #1",
-      "site": "jones",
-      "lat": -34.635483,
-      "lng": 150.858943,
-      "confidence": "single",
-      "dates": 1,
-      "nDates": null,
-      "lengthM": null
-    },
-    {
-      "name": "jones #2",
-      "site": "jones",
-      "lat": -34.638724,
-      "lng": 150.856628,
-      "confidence": "single",
-      "dates": 1,
-      "nDates": null,
-      "lengthM": null
-    },
-    {
-      "name": "jones #3",
-      "site": "jones",
-      "lat": -34.641129,
-      "lng": 150.856203,
-      "confidence": "single",
-      "dates": 1,
-      "nDates": null,
-      "lengthM": null
-    },
-    {
       "name": "killalea #1",
       "site": "killalea",
       "lat": -34.604988,
@@ -734,36 +679,6 @@
       "site": "killalea",
       "lat": -34.604744,
       "lng": 150.870819,
-      "confidence": "single",
-      "dates": 1,
-      "nDates": null,
-      "lengthM": null
-    },
-    {
-      "name": "north-wollongong #1",
-      "site": "north-wollongong",
-      "lat": -34.410688,
-      "lng": 150.90318,
-      "confidence": "single",
-      "dates": 1,
-      "nDates": null,
-      "lengthM": null
-    },
-    {
-      "name": "north-wollongong #2",
-      "site": "north-wollongong",
-      "lat": -34.411752,
-      "lng": 150.903385,
-      "confidence": "single",
-      "dates": 1,
-      "nDates": null,
-      "lengthM": null
-    },
-    {
-      "name": "north-wollongong #3",
-      "site": "north-wollongong",
-      "lat": -34.413149,
-      "lng": 150.902952,
       "confidence": "single",
       "dates": 1,
       "nDates": null,
@@ -888,6 +803,116 @@
       "dates": 1,
       "nDates": null,
       "lengthM": null
+    },
+    {
+      "name": "north-wollongong gutter (5/8)",
+      "site": "north-wollongong",
+      "lat": -34.41058,
+      "lng": 150.903012,
+      "confidence": "confirmed",
+      "dates": 5,
+      "nDates": 8,
+      "lengthM": 50
+    },
+    {
+      "name": "north-wollongong gutter (5/8)",
+      "site": "north-wollongong",
+      "lat": -34.415959,
+      "lng": 150.902812,
+      "confidence": "confirmed",
+      "dates": 5,
+      "nDates": 8,
+      "lengthM": 56
+    },
+    {
+      "name": "north-wollongong gutter (3/8)",
+      "site": "north-wollongong",
+      "lat": -34.411843,
+      "lng": 150.903272,
+      "confidence": "confirmed",
+      "dates": 3,
+      "nDates": 8,
+      "lengthM": 40
+    },
+    {
+      "name": "north-wollongong gutter (3/8)",
+      "site": "north-wollongong",
+      "lat": -34.408232,
+      "lng": 150.901007,
+      "confidence": "confirmed",
+      "dates": 3,
+      "nDates": 8,
+      "lengthM": 43
+    },
+    {
+      "name": "north-wollongong gutter (2/8)",
+      "site": "north-wollongong",
+      "lat": -34.411113,
+      "lng": 150.903166,
+      "confidence": "confirmed",
+      "dates": 2,
+      "nDates": 8,
+      "lengthM": 132
+    },
+    {
+      "name": "jones gutter (6/6)",
+      "site": "jones",
+      "lat": -34.635196,
+      "lng": 150.859368,
+      "confidence": "confirmed",
+      "dates": 6,
+      "nDates": 6,
+      "lengthM": 131
+    },
+    {
+      "name": "jones gutter (2/6)",
+      "site": "jones",
+      "lat": -34.639134,
+      "lng": 150.85649,
+      "confidence": "confirmed",
+      "dates": 2,
+      "nDates": 6,
+      "lengthM": 48
+    },
+    {
+      "name": "jones gutter (2/6)",
+      "site": "jones",
+      "lat": -34.635937,
+      "lng": 150.857293,
+      "confidence": "confirmed",
+      "dates": 2,
+      "nDates": 6,
+      "lengthM": 108
+    },
+    {
+      "name": "bombo gutter (4/6)",
+      "site": "bombo",
+      "lat": -34.655817,
+      "lng": 150.857023,
+      "confidence": "confirmed",
+      "dates": 4,
+      "nDates": 6,
+      "lengthM": 82
+    },
+    {
+      "name": "bombo gutter (2/6)",
+      "site": "bombo",
+      "lat": -34.658495,
+      "lng": 150.855559,
+      "confidence": "confirmed",
+      "dates": 2,
+      "nDates": 6,
+      "lengthM": 68
+    },
+    {
+      "name": "bombo gutter (2/6)",
+      "site": "bombo",
+      "lat": -34.655051,
+      "lng": 150.857442,
+      "confidence": "confirmed",
+      "dates": 2,
+      "nDates": 6,
+      "lengthM": 72
     }
   ]
 }

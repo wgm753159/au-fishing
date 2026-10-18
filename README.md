@@ -121,7 +121,7 @@ score = 100 × ( 0.35·潮流 + 0.30·光线 + 0.20·风 + 0.10·涌 + 0.05·潮
 
 ## 沟槽从哪来
 
-`data/gutters.json` 由 `scripts/import-gutters.mjs` 从本地项目 `~/surf-sat/out/gutters_v3.kml` 生成：88 个点位、24 个海滩、10 个多日期确认。
+`data/gutters.json` 由 `scripts/import-gutters.mjs` 从本地项目 `~/surf-sat/out/gutters_v3.kml` 生成：90 个点位、24 个海滩、21 个多日期确认。
 
 那个项目的 v3 检测器先拿 OSM 的 `natural=bare_rock/reef/cliff`、`man-made=breakwater/groyne` 和有名字的 `swimming_pool` 做掩膜、外扩 60m 成走廊，再在剩余沙质段找"比邻域更暗且白浪更少"的条带。v1 曾把 Mona Vale 的岩池判成沟槽（9/9 确认），v3 修掉后降为 4/9。
 

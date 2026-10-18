@@ -20,6 +20,7 @@ import { join } from "node:path";
 const DATA_DIR = fileURLToPath(new URL("../data/", import.meta.url));
 const OUT = join(DATA_DIR, "gutters.json");
 const src = process.argv[2] ?? join(process.env.HOME ?? "", "surf-sat/out/gutters_v3.kml");
+const PERSIST = join(process.env.HOME ?? "", "surf-sat/data/gutter_persistence.json");
 
 const xml = await readFile(src, "utf8");
 const blocks = xml.match(/<Placemark>[\s\S]*?<\/Placemark>/g) ?? [];
@@ -50,6 +51,44 @@ for (const block of blocks) {
   });
 }
 
+// --- multi-date confirmation -------------------------------------------
+// The KML carries the Sydney multi-date run. Beaches that have since been
+// re-run through gutter_persistence.py live in gutter_persistence.json;
+// for those, the persistent clusters supersede the single-date guesses.
+let persistenceSites = [];
+try {
+  // Python's json.dump can emit bare NaN, which JSON.parse rejects.
+  const persist = JSON.parse((await readFile(PERSIST, "utf8")).replace(/\bNaN\b/g, "null"));
+  const alreadyConfirmed = new Set(
+    gutters.filter((g) => g.confidence === "confirmed").map((g) => g.site)
+  );
+  persistenceSites = Object.keys(persist).filter((s) => !alreadyConfirmed.has(s));
+
+  for (const site of persistenceSites) {
+    const run = persist[site];
+    // drop the old single-date guesses for this beach
+    for (let i = gutters.length - 1; i >= 0; i--) {
+      if (gutters[i].site === site) gutters.splice(i, 1);
+    }
+    for (const c of run.persistent ?? []) {
+      gutters.push({
+        name: `${site} gutter (${c.hits}/${run.n_dates})`,
+        site,
+        lat: Number(c.lat.toFixed(6)),
+        lng: Number(c.lon.toFixed(6)),
+        confidence: "confirmed",
+        dates: c.hits,
+        nDates: run.n_dates,
+        lengthM: c.mean_len_m ?? null,
+      });
+    }
+  }
+} catch (err) {
+  // Never fail silently: a parse error here means "no merge", which looks
+  // identical to "nothing new" unless we say so.
+  console.warn(`  ! gutter_persistence.json not merged: ${err.message}`);
+}
+
 const payload = {
   version: 1,
   source: "surf-sat out/gutters_v3.kml",
@@ -59,6 +98,7 @@ const payload = {
   caveat:
     "A gutter is a channel where fish cruise, not a guaranteed fish-holding spot. " +
     "Single-date entries are leads, not conclusions. Read the water on the day.",
+  persistenceSites,
   counts: {
     total: gutters.length,
     confirmed: gutters.filter((g) => g.confidence === "confirmed").length,

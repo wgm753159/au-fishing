@@ -17,6 +17,7 @@
  */
 
 import { readFile, writeFile, appendFile, mkdir } from "node:fs/promises";
+import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { join } from "node:path";
 
@@ -110,16 +111,19 @@ const clamp01 = (x) => Math.max(0, Math.min(1, x));
 
 // -------------------------------------------------------------- data access
 
+/** Never let an API key reach a log, a terminal, or a screenshot. */
+const redact = (u) => String(u).replace(/\/v2\/[^/]+\//g, "/v2/***/").replace(/(key=)[^&]+/gi, "$1***");
+
 async function jget(url, headers = {}) {
   const res = await fetch(url, {
     headers: { "User-Agent": UA, Accept: "application/json", ...headers },
   });
   const text = await res.text();
-  if (!res.ok) throw new Error(`HTTP ${res.status} ${url}\n${text.slice(0, 300)}`);
+  if (!res.ok) throw new Error(`HTTP ${res.status} ${redact(url)}\n${text.slice(0, 300)}`);
   try {
     return JSON.parse(text);
   } catch {
-    throw new Error(`Non-JSON response from ${url}\n${text.slice(0, 300)}`);
+    throw new Error(`Non-JSON response from ${redact(url)}\n${text.slice(0, 300)}`);
   }
 }
 
@@ -163,14 +167,24 @@ async function overpass(query, timeoutMs = 10000) {
   );
 }
 
+const KEY_FILE = join(process.env.HOME ?? "", ".config", "willyweather.key");
+
+function readKeyFile() {
+  try {
+    return readFileSync(KEY_FILE, "utf8").trim() || null;
+  } catch {
+    return null;
+  }
+}
+
 function wwKey() {
-  const k = process.env.WILLYWEATHER_API_KEY;
+  const k = process.env.WILLYWEATHER_API_KEY || readKeyFile();
   if (!k) {
     throw new Error(
       "WILLYWEATHER_API_KEY is not set.\n" +
-        "Get a key at https://www.willyweather.com.au/api/register.html then:\n" +
-        "  export WILLYWEATHER_API_KEY=xxxxx\n" +
-        "Until then you can still use:  fishing.mjs spots --near \"Collaroy\""
+        "Get a key at https://www.willyweather.com.au/api/register.html then either\n" +
+        `  export WILLYWEATHER_API_KEY=xxxxx   or   put it in ${KEY_FILE}\n` +
+        "Without it, conditions falls back to Open-Meteo (no tides)."
     );
   }
   return k;
@@ -570,6 +584,8 @@ function renderReport(location, analyses, meta = {}) {
   out.push(
     "_分数是启发式（潮水 35% / 光线 30% / 风 20% / 涌 10% / 潮差 5%），不是鱼获预测。_"
   );
+  if (String(meta.source ?? "").startsWith("WillyWeather"))
+    out.push("_天气数据 © WillyWeather · 基于 Bureau of Meteorology 数据_");
   return out.join("\n");
 }
 
@@ -1046,6 +1062,44 @@ async function cmdMarks(flags) {
   }
 }
 
+// ------------------------------------------------------------------- doctor
+
+async function cmdDoctor() {
+  const envKey = process.env.WILLYWEATHER_API_KEY;
+  const fileKey = readKeyFile();
+  const key = envKey || fileKey;
+
+  console.log(`key source   : ${envKey ? "env WILLYWEATHER_API_KEY" : fileKey ? KEY_FILE : "none"}`);
+  if (key) console.log(`key length   : ${key.length}`);
+
+  if (!key) {
+    console.log("WillyWeather : SKIP (no key) — conditions will use Open-Meteo");
+  } else {
+    try {
+      const hits = await ww("/search.json", { query: "Sydney", limit: 1 });
+      console.log(`WillyWeather : OK (${Array.isArray(hits) ? hits.length : "?"} result, ${hits?.[0]?.name ?? "?"})`);
+    } catch (err) {
+      const message = err.message;
+      const code = message.match(/"code"\s*:\s*"([^"]+)"/)?.[1] ?? "unknown";
+      const desc = message.match(/"description"\s*:\s*"([^"]+)"/)?.[1] ?? message.split("\n")[0];
+      console.log(`WillyWeather : FAIL [${code}] ${desc}`);
+      if (code === "account-not-enabled")
+        console.log("               → 账号未启用。查邮箱确认链接，或在 /account/api.html 看状态。");
+    }
+  }
+
+  try {
+    const zones = await mpaAt(-33.98233, 151.22412);
+    console.log(`NSW MPA API  : OK (${zones.length} zone hit at Botany Bay EAR test point)`);
+  } catch (err) {
+    console.log(`NSW MPA API  : FAIL ${err.message.split("\n")[0]}`);
+  }
+
+  const marks = await loadMarks();
+  const species = (await readJson(SPECIES_FILE, { species: [] })).species ?? [];
+  console.log(`local data   : ${marks.length} marks, ${species.length} species rules`);
+}
+
 // --------------------------------------------------------------------- main
 
 async function cmdSpots(flags) {
@@ -1119,10 +1173,19 @@ async function cmdConditions(flags) {
   if (flags.fixture) {
     weather = JSON.parse(await (await import("node:fs/promises")).readFile(flags.fixture, "utf8"));
     source = "fixture";
-  } else if (process.env.WILLYWEATHER_API_KEY) {
-    const loc = await resolveLocation(at);
-    weather = await getWeather(loc.id, days);
-    source = "WillyWeather";
+  } else if (process.env.WILLYWEATHER_API_KEY || readKeyFile()) {
+    try {
+      const loc = await resolveLocation(at);
+      weather = await getWeather(loc.id, days);
+      source = "WillyWeather";
+    } catch (err) {
+      // 401 account-not-enabled, quota exhaustion, or an outage should not
+      // be fatal — drop to Open-Meteo and say so.
+      console.error(`⚠️  WillyWeather 不可用，降级到 Open-Meteo。（${err.message.split("\n")[0]}）`);
+      const geo = await geocode(at);
+      weather = await openMeteoPayload(geo, days);
+      source = "Open-Meteo（WillyWeather 调用失败，无潮汐）";
+    }
   } else {
     // No key: still useful, just without tides/moon.
     const geo = await geocode(at);
@@ -1170,6 +1233,7 @@ async function main() {
     else if (command === "catch") await cmdCatch(flags);
     else if (command === "stats") await cmdStats(flags);
     else if (command === "marks") await cmdMarks(flags);
+    else if (command === "doctor") await cmdDoctor();
     else {
       console.log(`au-fishing
 
@@ -1179,6 +1243,7 @@ async function main() {
   catch       --species "Dusky Flathead" --size 42 [--spot X] [--released] [--tide falling]
   stats       [--json]                                      钓获统计
   marks       [--near X] | marks add --name X --lat Y --lng Z [--type reef] [--depth 30]
+  doctor                                                    检查 key / 服务连通性
 
 Env: WILLYWEATHER_API_KEY (only needed for tides; otherwise Open-Meteo fallback)
      AF_OVERPASS_URL (optional self-hosted Overpass)

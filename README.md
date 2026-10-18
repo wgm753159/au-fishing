@@ -8,8 +8,14 @@
 # 1) 申请 key（免费额度够个人用）
 open https://www.willyweather.com.au/api/register.html
 
-# 2) 导出
-echo 'export WILLYWEATHER_API_KEY=你的key' >> ~/.zshrc && source ~/.zshrc
+# 2) 放 key（二选一）
+#    a. 环境变量
+#    echo 'export WILLYWEATHER_API_KEY=你的key' >> ~/.zshrc && source ~/.zshrc
+#    b. 文件（推荐：工具会自动读取，且不会被 env 泄露）
+mkdir -p ~/.config && printf '%s' '你的key' > ~/.config/willyweather.key && chmod 600 ~/.config/willyweather.key
+
+# 2.5) 自检
+node scripts/fishing.mjs doctor
 
 # 3) 冒烟测试（不需要 key）
 node scripts/fishing.mjs conditions --fixture fixtures/collaroy-2day.json
@@ -29,6 +35,7 @@ node scripts/fishing.mjs conditions --at "Collaroy Beach, NSW"   # Open-Meteo �
 | `catch` | 钓获记录，写入 jsonl，当场判断合规 | 否 |
 | `stats` | 钓获的描述性统计 | 否 |
 | `marks` | 管理本地点位（鱼礁/FAD/沉船/私房点） | 否 |
+| `doctor` | 检查 key 状态与各服务连通性 | 否 |
 
 ## 用法
 

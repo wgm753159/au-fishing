@@ -93,7 +93,7 @@ node scripts/fishing.mjs marks add --name "..." --lat -33.85 --lng 151.30 --type
 
 ## 本地点位
 
-`data/reefs.json` 是手工维护的点位表。**没有预置任何人工鱼礁坐标**——NSW DPI 公布了，但站点反爬（Cloudflare 403 + reader 代理也 403），无法可靠转录，所以留空并开放 `marks add`。用户提供坐标时才录入，标 `verified: false`。
+`data/reefs.json` 是官方点位（公开）；`marks add` 默认写入 **`data/reefs.local.json`**（已 gitignore，私房点不会泄露）。加 `--public` 才写进公开文件。**没有预置任何人工鱼礁坐标**——NSW DPI 公布了，但站点反爬（Cloudflare 403 + reader 代理也 403），无法可靠转录，所以留空并开放 `marks add`。用户提供坐标时才录入，标 `verified: false`。
 
 `spots` 会合并"本地点位 + OSM"，且 **OSM 挂掉时只显示本地点位而不是报错**。
 

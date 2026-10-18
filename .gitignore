@@ -8,3 +8,6 @@ data/catches.jsonl
 
 # OS / editor
 .DS_Store
+
+# Personal spots / marks
+data/reefs.local.json

@@ -747,7 +747,8 @@ async function findSpots(lat, lng, radiusKm) {
 
 const DATA_DIR = fileURLToPath(new URL("../data/", import.meta.url));
 const SPECIES_FILE = join(DATA_DIR, "species.json");
-const MARKS_FILE = join(DATA_DIR, "reefs.json");
+const MARKS_FILE = join(DATA_DIR, "reefs.json"); // shared/public marks (committed)
+const LOCAL_MARKS_FILE = join(DATA_DIR, "reefs.local.json"); // personal marks (gitignored)
 const CATCH_FILE = join(DATA_DIR, "catches.jsonl");
 
 async function readJson(file, fallback) {
@@ -970,15 +971,20 @@ async function cmdStats(flags) {
 }
 
 async function loadMarks() {
-  const f = await readJson(MARKS_FILE, { marks: [] });
-  return f.marks ?? [];
+  const pub = (await readJson(MARKS_FILE, { marks: [] })).marks ?? [];
+  const own = (await readJson(LOCAL_MARKS_FILE, { marks: [] })).marks ?? [];
+  return [...pub, ...own];
 }
 
-async function saveMarks(marks) {
+async function saveMarks(marks, file = LOCAL_MARKS_FILE) {
   await mkdir(DATA_DIR, { recursive: true });
   await writeFile(
-    MARKS_FILE,
-    JSON.stringify({ version: 1, note: "手工维护的点位。verified=false 表示未核对来源。", marks }, null, 2) + "\n"
+    file,
+    JSON.stringify(
+      { version: 1, note: "手工维护的点位。verified=false 表示未核对来源。", marks },
+      null,
+      2
+    ) + "\n"
   );
 }
 
@@ -991,7 +997,9 @@ async function cmdMarks(flags) {
     const lng = Number(flags.lng);
     if (!name || name === true || !Number.isFinite(lat) || !Number.isFinite(lng))
       throw new Error('Usage: fishing.mjs marks add --name "Sydney OAR" --lat -33.85 --lng 151.30 [--type reef|fad|wreck] [--depth 38]');
-    const marks = await loadMarks();
+    // Personal marks go to the gitignored file unless --public is passed.
+    const target = flags.public ? MARKS_FILE : LOCAL_MARKS_FILE;
+    const marks = (await readJson(target, { marks: [] })).marks ?? [];
     marks.push({
       name: String(name),
       type: flags.type && flags.type !== true ? String(flags.type) : "reef",
@@ -1002,8 +1010,11 @@ async function cmdMarks(flags) {
       verified: false,
       addedAt: new Date().toISOString(),
     });
-    await saveMarks(marks);
-    console.log(`已添加 ${name}。共 ${marks.length} 个点位 → ${MARKS_FILE}`);
+    await saveMarks(marks, target);
+    console.log(
+      `已添加 ${name}。共 ${marks.length} 个点位 → ${target}` +
+        (flags.public ? "（公开文件，提交会发布）" : "（本地文件，已 gitignore）")
+    );
     return;
   }
 
